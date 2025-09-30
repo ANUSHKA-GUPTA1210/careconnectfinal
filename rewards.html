@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewards Dashboard | HealthConnect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+  <header class="header">
+    <div class="logo">❤️ HealthConnect</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor.html">Donate</a>
+      <a href="search.html">Search</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="ngos.html">NGOs</a>
+    </nav>
+  </header>
+
+
+  <section class="hero" style="background-image: url('assets/images/rewards-bg.jpg'); background-size: cover;">
+    <h2>Your Rewards Dashboard</h2>
+    <p>Track your points, redeem benefits, and see top donors</p>
+  </section>
+
+
+  <section class="form-section">
+    <h2>My Points</h2>
+    <p>Total Points: <span id="totalPoints">230</span></p>
+    <p>Next Badge: <strong id="nextBadge">Silver Donor</strong></p>
+    
+    <button class="btn-primary" onclick="redeemPoints()">Redeem Points</button>
+  </section>
+
+
+  <section class="form-section">
+    <h2>My Donations</h2>
+    <ul id="donationHistory">
+      <li>Blood Donation - +50 Points</li>
+      <li>Medicine Donation - +30 Points</li>
+    </ul>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section class="form-section">
+    <h2>Top Donors Leaderboard 🏆</h2>
+    <ul id="leaderboard">
+      <li>1. Arpita Mishra - 1500 Points 🥇</li>
+      <li>2. Rahul Sharma - 1100 Points 🥈</li>
+      <li>3. Priya Gupta - 850 Points 🥉</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 HealthConnect | Together for a Better Tomorrow</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

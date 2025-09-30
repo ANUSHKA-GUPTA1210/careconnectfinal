@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <i class="fa-solid fa-heart-pulse"></i>
+    <span>CareConnect</span>
+  </div>
+  <nav>
+    <a href="index.html" data-key="home">Home</a>
+    <a href="donor.html" data-key="donate">Donate</a>
+    <a href="search.html" data-key="search">Search</a>
+    <a href="ngos.html" data-key="ngo">NGO Registration</a>
+  </nav>
+  <select id="languageSelect">
+    <option value="en">English</option>
+    <option value="hi">हिंदी</option>
+  </select>
+  <button class="btn-toggle" onclick="toggleDarkMode()">🌗</button>
+  <div id="notif-bell" class="notif-bell">
+    <i class="fa-solid fa-bell"></i>
+    <span id="notif-count">0</span>
+  </div>
+</header>
+
+<section class="hero hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h2 data-key="heroTitle">Connecting Hospitals, Donors & NGOs</h2>
+    <p data-key="heroDesc">Get real-time updates for emergencies and donations.</p>
+    <div class="hero-buttons">
+      <a href="donor.html" class="btn-primary">Become a Donor</a>
+      <a href="search.html" class="btn-secondary">Find Help</a>
+    </div>
+  </div>
+</section>
+
+<section class="search-section">
+  <h2 data-key="findHelp">Find Help Near You</h2>
+  <p data-key="findHelpDesc">Search for hospitals, NGOs, donors, and types of donations in your area.</p>
+
+  <div class="categories">
+    <div class="category-card" data-type="hospital">
+      <i class="fa-solid fa-hospital fa-2x"></i>
+      <h3 data-key="nearestHospital">Nearest Hospital Bed</h3>
+      <p>Find available beds near you.</p>
+    </div>
+    <div class="category-card" data-type="ngo">
+      <i class="fa-solid fa-hands-holding-heart fa-2x"></i>
+      <h3 data-key="nearestNGO">Nearest NGO</h3>
+      <p>Locate NGOs providing support nearby.</p>
+    </div>
+    <div class="category-card" data-type="donor">
+      <i class="fa-solid fa-user fa-2x"></i>
+      <h3 data-key="nearestDonor">Nearest Donor</h3>
+      <p>Connect with donors for blood, organs, and more.</p>
+    </div>
+    <div class="category-card" data-type="donationType">
+      <i class="fa-solid fa-gift fa-2x"></i>
+      <h3 data-key="typeOfDonation">Type of Donation</h3>
+      <p>Select the type of donation you need.</p>
+    </div>
+  </div>
+
+  <form class="search-form" id="searchForm">
+    <input type="text" id="searchLocation" placeholder="Enter your city or area" />
+    <select id="searchCategory">
+      <option value="hospital">Hospital</option>
+      <option value="ngo">NGO</option>
+      <option value="donor">Donor</option>
+    </select>
+    <select id="donationType">
+      <option value="any">Type of Donation (Any)</option>
+      <option value="blood">Blood</option>
+      <option value="organ">Organ</option>
+      <option value="food">Food</option>
+      <option value="medicine">Medicine</option>
+      <option value="childSupport">Child Support</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+
+
+  <div id="searchResults"></div>
+</section>
+
+
+<section class="maps-section">
+  <h3>Nearby Hospitals & Blood Banks</h3>
+  <div id="map"></div>
+</section>
+
+
+<section class="qr-section">
+  <h3>Verify Hospital or NGO</h3>
+  <div>
+    <input type="text" id="verifyInput" placeholder="Enter ID to generate QR">
+    <button onclick="generateQRCode()">Generate QR</button>
+  </div>
+  <canvas id="qrCanvas"></canvas>
+</section>
+
+
+<div id="chatbot" class="chatbot-container">
+  <div id="chatbot-header">
+    <h4>🤖 CareConnect Bot</h4>
+    <button onclick="toggleChatbot()">×</button>
+  </div>
+  <div id="chatbot-messages"></div>
+  <input type="text" id="chatbot-input" placeholder="Type your question..." onkeypress="sendChat(event)">
+</div>
+<button class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+
+
+<section class="search-section">
+  <h2>Find Hospital Beds</h2>
+
+  <form class="search-form" id="hospitalSearchForm">
+    <input type="text" placeholder="City or Hospital Name" id="searchCity" />
+    <select id="bedType">
+      <option value="all">All Beds</option>
+      <option value="icu">ICU</option>
+      <option value="general">General</option>
+      <option value="ventilator">Ventilator</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="hospitalResults"></div>
+</section>
+
+<footer>
+  <p>&copy; 2025 CareConnect | Empowering Healthcare with Technology</p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

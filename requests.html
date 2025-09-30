@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Help | HealthConnect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Request Help</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor-requests.html">Donor Notifications</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Need Blood or Organ?</h2>
+      <form onsubmit="createRequest(event)">
+        <input type="text" id="patientName" placeholder="Patient Name" required>
+        <input type="text" id="bloodTypeNeeded" placeholder="Blood Type Needed (e.g., A+)" required>
+        <input type="tel" id="contactNumber" placeholder="Contact Number" required>
+        <button type="submit" class="btn-primary">Send Request</button>
+      </form>
+      <p id="requestMsg"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

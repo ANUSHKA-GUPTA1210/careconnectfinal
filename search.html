@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Beds | HealthConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Search Hospitals & Donors</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor.html">Donors</a>
+      <a href="hospital.html">Hospitals</a>
+      <a href="ngos.html">NGOs</a>
+      <a href="requests.html">Request Help</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Search Hospitals</h2>
+      <input type="text" id="searchHospitalInput" placeholder="Search by name or location" onkeyup="searchHospitals()">
+      <div id="hospitalList" class="card-container"></div>
+    </section>
+
+    <section>
+      <h2>Search Donors</h2>
+      <input type="text" id="searchDonorInput" placeholder="Search by blood type" onkeyup="searchDonors()">
+      <div id="donorList" class="card-container"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

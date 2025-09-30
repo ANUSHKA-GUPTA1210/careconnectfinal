@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Registration | HealthConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo"><i class="fa-solid fa-hands-holding-heart"></i> HealthConnect</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor.html">Donate</a>
+      <a href="search.html">Search</a>
+      <a href="ngos.html">NGOs</a>
+    </nav>
+  </header>
+
+
+  <section class="hero" style="background: linear-gradient(to right, #43e97b, #38f9d7);">
+    <h2>Register Your NGO</h2>
+    <p>Join HealthConnect to help those in need faster and efficiently.</p>
+  </section>
+
+ 
+  <section class="form-section">
+    <h2>NGO Registration Form</h2>
+    <form id="ngoForm">
+      <div class="form-group">
+        <label for="ngoName">NGO Name</label>
+        <input type="text" id="ngoName" placeholder="Enter NGO Name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ngoEmail">Email</label>
+        <input type="email" id="ngoEmail" placeholder="contact@ngo.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ngoContact">Contact Number</label>
+        <input type="tel" id="ngoContact" placeholder="+91 98765 43210" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ngoAddress">Address</label>
+        <textarea id="ngoAddress" placeholder="Street, City, State, Pincode" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="ngoType">Type of Work / Services</label>
+        <input type="text" id="ngoType" placeholder="e.g., Blood Donation, Child Support, Food Donation" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ngoVerification">Upload Verification Documents</label>
+        <input type="file" id="ngoVerification" accept=".pdf,.jpg,.png">
+      </div>
+
+      <button type="submit" class="btn-primary">Register NGO</button>
+    </form>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 HealthConnect | Connecting NGOs & Beneficiaries</p>
+  </footer>
+</body>
+</html>
