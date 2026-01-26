@@ -2,37 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Search Help - CareConnect</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Beds | HealthConnect</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <header class="header">
-    <h1>Search Hospitals & Donors</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="donor.html">Donors</a>
-      <a href="hospital.html">Hospitals</a>
-      <a href="ngos.html">NGOs</a>
-      <a href="requests.html">Request Help</a>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Search Hospitals</h2>
-      <input type="text" id="searchHospitalInput" placeholder="Search by name or location" onkeyup="searchHospitals()">
-      <div id="hospitalList" class="card-container"></div>
-    </section>
+<!-- HERO + SEARCH -->
+<section class="search-hero">
 
-    <section>
-      <h2>Search Donors</h2>
-      <input type="text" id="searchDonorInput" placeholder="Search by blood type" onkeyup="searchDonors()">
-      <div id="donorList" class="card-container"></div>
-    </section>
-  </main>
+  <div class="hero-text">
+    <h1>Find Help. Save Lives.</h1>
+    <p>Instantly connect with donors, hospitals, and NGOs during emergencies.</p>
+  </div>
 
-  <script src="script.js"></script>
+  <div class="search-box">
+    <h2>Search Help</h2>
+
+    <label>Resource Needed</label>
+    <select>
+      <option>Select resource</option>
+      <option>Beds</option>
+      <option>Blood</option>
+      <option>Plasma</option>
+      <option>Oxygen</option>
+      <option>Medicines</option>
+      <option>Food</option>
+    </select>
+
+    <label>Search For</label>
+    <select>
+      <option>Select category</option>
+      <option>Donor</option>
+      <option>Hospital</option>
+      <option>NGO</option>
+    </select>
+
+    <label>Location</label>
+    <input type="text" placeholder="Enter city or area">
+
+    <button>
+      <i class="fa-solid fa-magnifying-glass"></i> Search
+    </button>
+  </div>
+
+</section>
+
+<!-- POPULAR RESOURCES -->
+<section class="popular-section">
+  <h2>Popular Emergency Resources</h2>
+
+  <div class="popular-cards">
+    <div class="pop-card"><i class="fa-solid fa-bed"></i><p>Hospital Beds</p></div>
+    <div class="pop-card"><i class="fa-solid fa-droplet"></i><p>Blood Donors</p></div>
+    <div class="pop-card"><i class="fa-solid fa-lungs"></i><p>Oxygen</p></div>
+    <div class="pop-card"><i class="fa-solid fa-pills"></i><p>Medicines</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <h2>How CareConnect Works</h2>
+
+  <div class="how-steps">
+    <div class="step">
+      <i class="fa-solid fa-hand-holding-medical"></i>
+      <h3>Select Resource</h3>
+      <p>Choose what help you need during the emergency.</p>
+    </div>
+
+    <div class="step">
+      <i class="fa-solid fa-magnifying-glass-location"></i>
+      <h3>Search Nearby</h3>
+      <p>Find donors, hospitals or NGOs near your location.</p>
+    </div>
+
+    <div class="step">
+      <i class="fa-solid fa-heart"></i>
+      <h3>Get Help Fast</h3>
+      <p>Connect instantly and save crucial time.</p>
+    </div>
+  </div>
+</section>
+
+
+
 </body>
 </html>

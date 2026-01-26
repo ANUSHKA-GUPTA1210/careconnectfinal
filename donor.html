@@ -4,32 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Become a Donor - HealthConnect</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4facfe;
+      --secondary: #00f2fe;
+      --accent: #9f7aea;
+      --light-bg: #f5f7fa;
+      --dark-bg: #1e1e2f;
+      --text-color: #1f2937;
+      --dark-text: #f9f9f9;
+      --card-bg: #ffffff;
+      --card-bg-dark: #2b2b3c;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    /* FORM CONTAINER */
+    .form-container {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: 25px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      transition: background 0.3s;
+    }
+
+    body.dark .form-container { background: var(--card-bg-dark); }
+
+    .form-container h2 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .form-container p {
+      text-align: center;
+      color: #0f172a;
+      font-size: 1.1rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    body.dark .form-group label { color: var(--dark-text); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(79,172,254,0.3);
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .form-container { padding: 30px; }
+      .form-container h2 { font-size: 1.8rem; }
+      .form-container p { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo"><i class="fa-solid fa-heart-pulse"></i> HealthConnect</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Beds</a>
-      <a href="rewards.html">Rewards</a>
-    </nav>
-  </header>
-
-  <section class="form-section">
+  <div class="form-container">
     <h2>Register as a Donor</h2>
     <p>Choose what you want to donate and help someone in need.</p>
     <form id="donorForm">
       <div class="form-group">
         <label for="donorName">Full Name</label>
-        <input type="text" id="donorName" required>
+        <input type="text" id="donorName" required placeholder="John Doe">
       </div>
 
       <div class="form-group">
         <label for="donorContact">Contact Number</label>
-        <input type="tel" id="donorContact" required>
+        <input type="tel" id="donorContact" required placeholder="+91 9876543210">
       </div>
 
       <div class="form-group">
@@ -47,7 +150,7 @@
 
       <div class="form-group">
         <label for="location">Location</label>
-        <input type="text" id="location" placeholder="City / Area" required>
+        <input type="text" id="location" required placeholder="City / Area">
       </div>
 
       <div class="form-group">
@@ -57,10 +160,10 @@
 
       <button type="submit" class="btn-primary">Register as Donor</button>
     </form>
-  </section>
+  </div>
 
   <footer>
-    <p>&copy; 2025 HealthConnect | Empowering Healthcare</p>
+    &copy; 2025 HealthConnect | Empowering Healthcare
   </footer>
 </body>
 </html>

@@ -232,3 +232,162 @@ function sendChat(e){
     container.scrollTop=container.scrollHeight;
   }
 }
+// Sample hospital data for prototype
+const hospitals = [
+  {name:"City Hospital", location:"Delhi", beds:15, address:"123 MG Road, Delhi"},
+  {name:"LifeCare Hospital", location:"Delhi", beds:8, address:"45 Connaught Place, Delhi"},
+  {name:"RedCross Blood Bank", location:"Delhi", beds:0, address:"7 Nehru Street, Delhi"},
+  {name:"Apollo Hospital", location:"Delhi", beds:20, address:"22 Ring Road, Delhi"}
+];
+
+// Display hospitals on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const resultsContainer = document.getElementById('searchResults');
+  if(!resultsContainer) return;
+  
+  hospitals.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('result-card');
+    card.innerHTML = `
+      <div class="info">
+        <h3>${item.name}</h3>
+        <p>${item.address}</p>
+        <p class="beds">Available Beds: ${item.beds}</p>
+      </div>
+      <div class="actions">
+        <button onclick="alert('Request sent to ${item.name}')">Request Bed</button>
+      </div>
+    `;
+    resultsContainer.appendChild(card);
+  });
+});
+function createRequest(event) {
+  event.preventDefault();
+
+  const requestData = {
+    patientName: document.getElementById("patientName").value,
+    age: document.getElementById("patientAge").value,
+    bloodType: document.getElementById("bloodTypeNeeded").value,
+    hospital: document.getElementById("hospitalName").value,
+    reason: document.getElementById("medicalReason").value,
+    amount: document.getElementById("amountNeeded").value,
+    contact: document.getElementById("contactNumber").value,
+    proof: document.getElementById("medicalProof").files[0]?.name,
+    status: "Pending Verification",
+    submittedAt: new Date().toLocaleString()
+  };
+
+  if (!requestData.proof) {
+    alert("Please upload medical proof.");
+    return;
+  }
+
+  let requests = JSON.parse(localStorage.getItem("patientRequests")) || [];
+  requests.push(requestData);
+  localStorage.setItem("patientRequests", JSON.stringify(requests));
+
+  document.getElementById("requestMsg").innerText =
+    "✅ Request submitted successfully. It will be verified before reaching donors.";
+
+  event.target.reset();
+}
+// Handle bed requests
+function requestBed(hospitalName) {
+  alert(`Bed request sent to ${hospitalName}!`);
+}
+
+// Search form functionality
+const searchForm = document.getElementById('searchForm');
+const searchResults = document.getElementById('searchResults');
+
+searchForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const location = document.getElementById('searchLocation').value.toLowerCase();
+  const category = document.getElementById('searchCategory').value;
+  const type = document.getElementById('donationType').value;
+
+  const cards = searchResults.querySelectorAll('.result-card');
+  cards.forEach(card => {
+    const name = card.querySelector('h3').innerText.toLowerCase();
+    const loc = card.querySelector('p').innerText.toLowerCase();
+    const bedsText = card.querySelector('.beds').innerText.toLowerCase();
+
+    if ((category === 'hospital' && (name.includes(location) || loc.includes(location))) ||
+        (category === 'donor' && bedsText.includes(type)) ||
+        category === 'ngo' || location === '') {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+const events = [
+  "🩸 Blood request raised in Delhi",
+  "🏥 City Hospital updated bed availability",
+  "🙋 New donor registered in Noida",
+  "❤️ Donation successfully completed"
+];
+
+setInterval(() => {
+  const feed = document.getElementById("liveFeed");
+  const li = document.createElement("li");
+  li.textContent = events[Math.floor(Math.random() * events.length)];
+  feed.prepend(li);
+  if (feed.children.length > 5) feed.removeChild(feed.lastChild);
+}, 3000);
+const requests = [
+  { type: "Blood (O+)", city: "Delhi", urgency: "Critical" },
+  { type: "Plasma", city: "Noida", urgency: "High" },
+  { type: "ICU Bed", city: "Gurgaon", urgency: "Immediate" }
+];
+let map;
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showMap, showError);
+  } else {
+    alert("Geolocation is not supported by your browser.");
+  }
+}
+
+function showMap(position) {
+  const userLocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+  };
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: userLocation,
+    zoom: 14,
+  });
+
+  new google.maps.Marker({
+    position: userLocation,
+    map: map,
+    label: "You",
+  });
+
+  const request = {
+    location: userLocation,
+    radius: 5000,
+    type: ["hospital"],
+  };
+
+  const service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      results.forEach((place) => {
+        new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name,
+        });
+      });
+    }
+  });
+}
+
+function showError(error) {
+  alert("Location access is required to find nearby hospitals.");
+}
