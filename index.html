@@ -6,8 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareConnect | Home</title>
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -121,7 +128,6 @@
     <section class="live-section">
         <div class="live-grid">
 
-            <!-- LEFT -->
             <div class="live-card">
                 <h3>🔴 Live Activity</h3>
                 <ul id="liveFeed">
@@ -132,7 +138,6 @@
                 </ul>
             </div>
 
-            <!-- RIGHT -->
             <div class="live-card urgent">
                 <h3>🆘 Active Patient Requests</h3>
 
@@ -162,10 +167,8 @@
     <!-- ================= REWARDS ================= -->
     <section class="rewards-dashboard">
         <h2>My Rewards & Donations</h2>
-
         <p>Total Points: <span id="totalPoints">0</span></p>
         <p>Next Badge: <strong id="nextBadge">Silver Donor</strong></p>
-
         <button class="btn-primary" onclick="redeemPoints()">Redeem Points</button>
 
         <h3>Donation History</h3>
@@ -182,7 +185,30 @@
 
     <!-- ================= SCRIPTS ================= -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Map Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var map = L.map('map').setView([28.6139, 77.2090], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([28.6139, 77.2090])
+                .addTo(map)
+                .bindPopup("CareConnect Hospital Location")
+                .openPopup();
+        });
+    </script>
+
+    <!-- Your Custom JS -->
     <script src="script.js"></script>
 
 </body>
+
 </html>
