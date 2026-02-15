@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Registration | CareConnect</title>
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-
 <body>
 
   <header class="header">
@@ -30,6 +27,7 @@
     <p>Join HealthConnect to help patients find emergency care faster.</p>
   </section>
 
+  
   <section class="form-section">
     <h2>Hospital Registration Form</h2>
     <form id="hospitalForm">
@@ -72,32 +70,9 @@
     </form>
   </section>
 
-  <!-- MAP SECTION -->
-  <section class="map-section" style="padding: 40px; text-align:center;">
-    <h2>Hospital Location Map</h2>
-    <div id="map" style="height: 400px; margin-top: 20px; border-radius: 10px;"></div>
-  </section>
 
   <footer>
     <p>&copy; 2025 HealthConnect | Connecting Hospitals & Patients</p>
   </footer>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <script>
-    // Default location (Delhi - You can change coordinates)
-    var map = L.map('map').setView([28.6139, 77.2090], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    L.marker([28.6139, 77.2090])
-      .addTo(map)
-      .bindPopup("HealthConnect Hospital Location")
-      .openPopup();
-  </script>
-
 </body>
 </html>

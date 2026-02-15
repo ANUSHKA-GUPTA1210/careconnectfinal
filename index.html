@@ -1,39 +1,143 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>CareConnect | Home</title> <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> </head> <body> <!-- HEADER --> <header class="header"> <div class="logo"><i class="fa-solid fa-hands-holding-heart"></i> CareConnect</div> <nav> <a href="index.html" data-key="home">Home</a> <a href="donor.html" data-key="donate">Donate</a> <a href="search.html" data-key="search">Search</a> <a href="ngos.html" data-key="ngo">NGO Registration</a><a href="hospital.html">Hospital Registration</a> <button class="btn-toggle" onclick="toggleDarkMode()">🌙</button> </nav> </header> <!-- HERO --> <section class="hero"> <h2 data-key="heroTitle">Connecting Hospitals, Donors & NGOs</h2> <p data-key="heroDesc">Get real-time updates for emergencies and donations.</p> </section> <!-- ROLE SELECTION --> <section class="categories"> <div class="category-card"> <i class="fa-solid fa-user-plus fa-2x"></i> <h3>Register as Donor</h3> <p>Join our community and save lives by donating blood, plasma, organs, or essentials.</p> <button class="btn btn-primary" onclick="location.href='donor.html'">Register</button> </div> <div class="category-card"> <i class="fa-solid fa-hands-helping fa-2x"></i> <h3>Register as NGO</h3> <p>Connect with donors and hospitals to provide faster support to those in need.</p> <button class="btn btn-primary" onclick="location.href='ngos.html'">Register</button> </div> <div class="category-card"> <i class="fa-solid fa-hospital-user fa-2x"></i> <h3>Register as Patient</h3> <p>Request urgent help and get connected with nearby hospitals and donors.</p> <button class="btn btn-primary" onclick="location.href='requests.html'">Register</button> </div> </section> <!-- ===== SEARCH & MAP ===== --> <section class="search-section"> <h2>Search Hospitals & Donors</h2> <form id="searchForm" class="search-form"> <input type="text" id="searchLocation" placeholder="Enter location or name"> <select id="searchCategory"> <option value="hospital">Hospital</option> <option value="donor">Donor</option> <option value="ngo">NGO</option> </select> <select id="donationType"> <option value="any">Any Type</option> <option value="blood">Blood</option> <option value="plasma">Plasma</option> <option value="organ">Organ</option> <option value="medicine">Medicine</option> </select> <button type="submit" class="btn btn-primary">Search</button> </form> <!-- HOSPITAL RESULTS --> <div id="searchResults"> <!-- Example Hospital Card --> <div class="result-card"> <div class="info"> <h3>City Hospital</h3> <p>📍 Delhi</p> <p class="beds">Available Beds: <span>15</span></p> </div> <div class="actions"> <button onclick="requestBed('City Hospital')">Request Bed</button> </div> </div> <div class="result-card"> <div class="info"> <h3>LifeCare Hospital</h3> <p>📍 Delhi</p> <p class="beds low">Available Beds: <span>2</span></p> </div> <div class="actions"> <button onclick="requestBed('LifeCare Hospital')">Request Bed</button> </div> </div> </div> <div id="map"> <!-- Map can be integrated here (Google Maps / Leaflet) --> </div> <section class="live-section">
-  <div class="live-grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareConnect | Home</title>
 
-    <!-- LEFT: LIVE ACTIVITY -->
-    <div class="live-card">
-      <h3>🔴 Live Activity</h3>
-      <ul id="liveFeed">
-        <li>🙋 New donor registered in Noida</li>
-        <li>🩸 Blood request raised in Delhi</li>
-        <li>❤️ Donation successfully completed</li>
-        <li>🏥 City Hospital updated bed availability</li>
-      </ul>
-    </div>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
-    <!-- RIGHT: PATIENT REQUESTS -->
-    <div class="live-card urgent">
-      <h3>🆘 Active Patient Requests</h3>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
 
-      <div class="request">
-        <span class="tag blood">Blood (A+)</span>
-        <p>Delhi • 2 units needed</p>
-        <button>Respond</button>
-      </div>
+<body>
 
-      <div class="request">
-        <span class="tag plasma">Plasma</span>
-        <p>Noida • Critical</p>
-        <button>Respond</button>
-      </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="logo"><i class="fa-solid fa-hands-holding-heart"></i> CareConnect</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="donor.html">Donate</a>
+    <a href="search.html">Search</a>
+    <a href="ngos.html">NGO Registration</a>
+    <a href="hospital.html">Hospital Registration</a>
+    <button class="btn-toggle" onclick="toggleDarkMode()">🌙</button>
+  </nav>
+</header>
 
-      <div class="request">
-        <span class="tag bed">ICU Bed</span>
-        <p>Gurgaon • Immediate</p>
-        <button>Respond</button>
-      </div>
-    
+<!-- HERO -->
+<section class="hero">
+  <h2>Connecting Hospitals, Donors & NGOs</h2>
+  <p>Get real-time updates for emergencies and donations.</p>
 </section>
 
-<section class="rewards-dashboard"> <h2>My Rewards & Donations</h2> <p>Total Points: <span id="totalPoints">0</span></p> <p>Next Badge: <strong id="nextBadge">Silver Donor</strong></p> <button class="btn-primary" onclick="redeemPoints()">Redeem Points</button> <h3>Donation History</h3> <ul id="donationHistory"></ul> <h3>Top Donors Leaderboard 🏆</h3> <ul id="leaderboard"></ul> </section> <!-- FOOTER --> <footer> <p>© 2025 CareConnect | Together for a Better Tomorrow</p> </footer> <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <script src="script.js"></script> </body> </html> 
+<!-- ROLE SELECTION -->
+<section class="categories">
+  <div class="category-card">
+    <i class="fa-solid fa-user-plus fa-2x"></i>
+    <h3>Register as Donor</h3>
+    <p>Join our community and save lives by donating blood, plasma, organs, or essentials.</p>
+    <button class="btn btn-primary" onclick="location.href='donor.html'">Register</button>
+  </div>
+
+  <div class="category-card">
+    <i class="fa-solid fa-hands-helping fa-2x"></i>
+    <h3>Register as NGO</h3>
+    <p>Connect with donors and hospitals to provide faster support to those in need.</p>
+    <button class="btn btn-primary" onclick="location.href='ngos.html'">Register</button>
+  </div>
+
+  <div class="category-card">
+    <i class="fa-solid fa-hospital-user fa-2x"></i>
+    <h3>Register as Patient</h3>
+    <p>Request urgent help and get connected with nearby hospitals and donors.</p>
+    <button class="btn btn-primary" onclick="location.href='requests.html'">Register</button>
+  </div>
+</section>
+
+<!-- SEARCH SECTION -->
+<section class="search-section">
+  <h2>Search Hospitals & Donors</h2>
+
+  <form id="searchForm" class="search-form">
+    <input type="text" id="searchLocation" placeholder="Enter location or name">
+
+    <select id="searchCategory">
+      <option value="hospital">Hospital</option>
+      <option value="donor">Donor</option>
+      <option value="ngo">NGO</option>
+    </select>
+
+    <select id="donationType">
+      <option value="any">Any Type</option>
+      <option value="blood">Blood</option>
+      <option value="plasma">Plasma</option>
+      <option value="organ">Organ</option>
+      <option value="medicine">Medicine</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <!-- Results -->
+  <div id="searchResults">
+    <div class="result-card">
+      <div class="info">
+        <h3>City Hospital</h3>
+        <p>📍 Delhi</p>
+        <p class="beds">Available Beds: <span>15</span></p>
+      </div>
+      <div class="actions">
+        <button onclick="requestBed('City Hospital')">Request Bed</button>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="info">
+        <h3>LifeCare Hospital</h3>
+        <p>📍 Delhi</p>
+        <p class="beds low">Available Beds: <span>2</span></p>
+      </div>
+      <div class="actions">
+        <button onclick="requestBed('LifeCare Hospital')">Request Bed</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div id="map" style="height: 400px; margin-top: 30px; border-radius: 12px;"></div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 CareConnect | Together for a Better Tomorrow</p>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // Initialize map
+  var map = L.map('map').setView([28.6139, 77.2090], 12); // Delhi
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Example hospital markers
+  L.marker([28.6139, 77.2090])
+    .addTo(map)
+    .bindPopup("<b>City Hospital</b><br>15 Beds Available");
+
+  L.marker([28.6200, 77.2100])
+    .addTo(map)
+    .bindPopup("<b>LifeCare Hospital</b><br>2 Beds Available");
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
