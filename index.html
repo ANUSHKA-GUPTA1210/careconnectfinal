@@ -100,4 +100,89 @@
             </div>
 
             <div class="result-card">
-                <div class="in
+                <div class="info">
+                    <h3>LifeCare Hospital</h3>
+                    <p>📍 Delhi</p>
+                    <p class="beds low">Available Beds: <span>2</span></p>
+                </div>
+                <div class="actions">
+                    <button onclick="requestBed('LifeCare Hospital')">Request Bed</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MAP CONTAINER -->
+        <div id="map" style="height: 400px; margin-top: 20px;"></div>
+
+    </section>
+
+    <!-- ================= LIVE SECTION ================= -->
+    <section class="live-section">
+        <div class="live-grid">
+
+            <!-- LEFT -->
+            <div class="live-card">
+                <h3>🔴 Live Activity</h3>
+                <ul id="liveFeed">
+                    <li>🙋 New donor registered in Noida</li>
+                    <li>🩸 Blood request raised in Delhi</li>
+                    <li>❤️ Donation successfully completed</li>
+                    <li>🏥 City Hospital updated bed availability</li>
+                </ul>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="live-card urgent">
+                <h3>🆘 Active Patient Requests</h3>
+
+                <div class="request">
+                    <span class="tag blood">Blood (A+)</span>
+                    <p>Delhi • 2 units needed</p>
+                    <button>Respond</button>
+                </div>
+
+                <div class="request">
+                    <span class="tag plasma">Plasma</span>
+                    <p>Noida • Critical</p>
+                    <button>Respond</button>
+                </div>
+
+                <div class="request">
+                    <span class="tag bed">ICU Bed</span>
+                    <p>Gurgaon • Immediate</p>
+                    <button>Respond</button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= REWARDS ================= -->
+    <section class="rewards-dashboard">
+        <h2>My Rewards & Donations</h2>
+
+        <p>Total Points: <span id="totalPoints">0</span></p>
+        <p>Next Badge: <strong id="nextBadge">Silver Donor</strong></p>
+
+        <button class="btn-primary" onclick="redeemPoints()">Redeem Points</button>
+
+        <h3>Donation History</h3>
+        <ul id="donationHistory"></ul>
+
+        <h3>Top Donors Leaderboard 🏆</h3>
+        <ul id="leaderboard"></ul>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>© 2025 CareConnect | Together for a Better Tomorrow</p>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
